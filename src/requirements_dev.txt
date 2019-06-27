@@ -1,4 +1,4 @@
 pytest
-mypy==0.670
+mypy==0.711
 pylint2junit
-pip
+pip==19.1.1

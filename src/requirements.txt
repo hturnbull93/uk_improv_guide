@@ -1,8 +1,9 @@
-mysqlclient
-django
-jinja2
 django-reversion==3.0.4
+jinja2==2.10.1
+mysqlclient==1.4.2.post1
+django==2.2.2
 pytz
 django-recaptcha
 social-auth-app-django
 pyyaml
+Pillow
