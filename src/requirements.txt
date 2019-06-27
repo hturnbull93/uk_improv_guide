@@ -3,6 +3,6 @@ django
 jinja2
 django-reversion
 pytz
-django-recaptcha
+django-recaptcha==2.0.4
 social-auth-app-django
 pyyaml
