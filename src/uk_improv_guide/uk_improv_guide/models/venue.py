@@ -13,6 +13,7 @@ class Venue(models.Model):
     address = models.CharField(max_length=256, verbose_name="Street Address")
     city = models.CharField(max_length=256, default="London")
     postcode = models.CharField(max_length=10, verbose_name="Post Code")
+    image = models.ImageField(upload_to="static/images/venue/", max_length=100, blank=True)
 
     def __str__(self) -> str:
         return f"{self.name}, {self.address}"
