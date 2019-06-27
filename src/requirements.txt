@@ -2,7 +2,7 @@ mysqlclient
 django
 jinja2
 django-reversion
-pytz
+pytz==2019.1
 django-recaptcha
 social-auth-app-django
 pyyaml
