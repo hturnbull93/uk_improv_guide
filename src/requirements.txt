@@ -6,5 +6,5 @@ pytz
 django-recaptcha
 social-auth-app-django
 pyyaml
-django-countries
+django-countries==5.3.3
 Pillow
