@@ -26,16 +26,13 @@ services:
       - ./static:/src/uk_improv_guide/static
     working_dir: "/src/uk_improv_guide"
     entrypoint: ["/src/uk_improv_guide/start.sh"]
-    ports:
-      - "80:80"
+#    ports:
+#      - "80:80"
     depends_on:
       - db
     environment:
       <<: *base-database
       SITE_PORT: ${SITE_PORT}
-    networks:
-      - internal
-
 
 
   python:
@@ -46,8 +43,6 @@ services:
       - db
     environment:
       <<: *base-database
-    networks:
-      - internal
 
   db:
     <<: *base-dev
@@ -59,8 +54,6 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_PORT: '5432'
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    networks:
-      - internal
 
   adminer:
     image: adminer:4.7.1
@@ -71,13 +64,25 @@ services:
       ADMINER_DEFAULT_SERVER: "db"
     depends_on:
       - db
-    networks:
-      - internal
+
+
+  nginx:
+    image: nginx:1.15-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
 
 
 volumes:
   postgres_data:
 
-
-networks:
-  internal:
